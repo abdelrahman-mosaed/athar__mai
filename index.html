@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أَثَر - سيب أثرك</title>
+<style>
+body{font-family:Tahoma; background:#F8F6F0; margin:0; text-align:center; padding-bottom:30px;}
+.header{background:#1A1A1A; color:white; padding:40px 15px 25px; border-radius:0 0 30px 30px;}
+.header h1{margin:0; font-size:55px; color:#FFD700;}
+.header p{font-size:17px; color:white; margin:5px;}
+.header small{color:#FFD700;}
+.box{background:white; margin:15px; padding:20px; border-radius:20px; box-shadow:0 5px 15px #ddd;}
+input,textarea{width:90%; padding:14px; border-radius:15px; border:2px solid #1A1A1A; font-size:16px; text-align:center; font-family:Tahoma;}
+button{background:#1A1A1A; color:#FFD700; border:none; padding:15px; border-radius:15px; font-size:17px; margin-top:12px; cursor:pointer; width:95%;}
+#answer{background:#FFF8DC; padding:15px; border-radius:15px; margin-top:15px; text-align:right; display:none; line-height:1.9;}
+.quiz-btn{background:#FFD700; color:#1A1A1A;}
+.dream{ background:#FFF8DC; padding:12px; border-radius:12px; margin-top:10px; text-align:right;}
+.subject{ display:inline-block; background:#eee; padding:8px 14px; border-radius:20px; margin:4px; cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>أَثَر</h1>
+<p>سيب أثرك .. افهم .. اتعلم .. انجح</p>
+<small>أول مساعد ذكي لمدرستنا - معمول بحب ❤️</small>
+</div>
+
+<div class="box">
+<h2>اختاري المادة 👇</h2>
+<div>
+<span class="subject" onclick="document.getElementById('q').value='يعني ايه HTML ؟'; ask()">💻 برمجة</span>
+<span class="subject" onclick="document.getElementById('q').value='ازاي اعمل جدول مذاكرة ؟'; ask()">📚 مذاكرة</span>
+<span class="subject" onclick="document.getElementById('q').value='يعني ايه متغير في البرمجة ؟'; ask()">🧮 رياضة</span>
+<span class="subject" onclick="document.getElementById('q').value='ازاي اذاكر انجليزي ؟'; ask()">🔤 انجليزي</span>
+</div>
+<h2 style="margin-top:20px;">اسألني هنا 👇</h2>
+<input id="q" placeholder="اكتبي سؤالك هنا...">
+<br>
+<button onclick="ask()">اسأل أَثَر</button>
+<div id="answer"></div>
+<button class="quiz-btn" onclick="makeQuiz()">اعملي امتحان صغير 📝</button>
+<div id="quiz"></div>
+</div>
+
+<div class="box">
+<h2>✨ سيب أثرك هنا</h2>
+<p>اكتبي حلمك، وكل اللي هيدخل الموقع هيشوفه</p>
+<input id="name" placeholder="اسمك ايه؟">
+<br><br>
+<textarea id="dream" placeholder="حلمي اني ابقى..."></textarea>
+<br>
+<button onclick="saveDream()">سيب أثري 💛</button>
+<div id="dreams"></div>
+</div>
+
+<script>
+function ask(){
+  let q = document.getElementById('q').value;
+  let ans = document.getElementById('answer');
+  ans.style.display = 'block';
+  if(q.includes('HTML')){
+    ans.innerHTML = "<b>بص يا صاحبي:</b><br> HTML ده زي هيكل البيت، هو اللي بيبني شكل الموقع. انت بتكتب فيه العنوان والصورة والزرار، وبعد كده بنلونه بـ CSS.";
+  } else if(q.includes('مذاكرة')){
+    ans.innerHTML = "<b>أحسن جدول ليك:</b><br>1- ذاكر 25 دقيقة وريح 5 دقايق<br>2- ابدأ بالمادة الصعبة الأول<br>3- حل أسئلة بعد كل درس";
+  } else if(q.includes('متغير')){
+    ans.innerHTML = "<b>المتغير سهل خالص:</b><br> تخيل علبة بتحط فيها حاجة، العلبة دي اسمها متغير. ممكن تحط فيها اسمك، سنك، أي حاجة، وترجع تاخدها في أي وقت.";
+  } else if(q.includes('انجليزي')){
+    ans.innerHTML = "<b>عشان تبقي شاطرة في الانجليزي:</b><br>1- احفظي 5 كلمات كل يوم<br>2- اتفرجي على فيديو بالانجليزي 10 دقايق<br>3- اكتبي جملة واحدة كل يوم بالانجليزي عن يومك";
+  } else {
+    ans.innerHTML = "<b>سؤال جميل!</b><br> بص، " + q + " دي فكرتها ببساطة: أي حاجة بتتقسم لحتت صغيرة، لو قسمتها هتفهمها. تحب أشرحهالك بمثال من حياتنا؟";
+  }
+}
+function makeQuiz(){
+  document.getElementById('quiz').innerHTML = "<br><b>امتحان سريع:</b><br>1- HTML بيعمل ايه؟<br>أ) بيلون الموقع<br>ب) بيبني هيكل الموقع ✅<br>ج) بيعمل العاب<br><br>جاوبت صح؟ انت كده سيبت أثر!";
+}
+function saveDream(){
+  let n = document.getElementById('name').value || "صديقتي";
+  let d = document.getElementById('dream').value || "عايزة انجح واسيب أثر";
+  document.getElementById('dreams').innerHTML += "<div class='dream'><b>💛 " + n + ":</b> " + d + "</div>";
+  document.getElementById('name').value=""; document.getElementById('dream').value="";
+  alert("تم! أثرك اتسجل يا " + n);
+}
+</script>
+</body>
+</html>
